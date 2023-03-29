@@ -1,0 +1,30 @@
+https://replit.com/@UnnecessaryAcco/EXTRA-CREDIT-AZAMAT#main.py
+
+
+#the link to the flowchart is in the replit
+
+
+
+
+
+
+
+
+#main
+#importing functions from the other files
+#my files contain only one column from the excel file
+
+from countryMedalCount import CountryMedalCount
+from GoldSilverBronze import GoldSilverBronze
+from MaleFemale import MaleFemale
+from WinterSummer import WinterSummer
+
+#running functions from the imported files
+
+CountryMedalCount()
+GoldSilverBronze()
+MaleFemale()
+WinterSummer()
+
+
+

@@ -1,0 +1,127 @@
+# replit link for this program: https://replit.com/@UnnecessaryAcco/Azamat-Salamatov-HW-COMP1411-November-2-2022#main.py
+
+from time import sleep    # I imported sleep, to make a 2 second sleep(stop) later in my code
+def main():                         # For these questions I created distinct functions. Now, I start with main function
+    print("Hello, \n My Name is Azamat Salamatov! \n Welcome To my Program")   #my greetings
+    while True:       #I created a while loop to enable the program to run multiple times (not only once and then stop)
+        sleep(2)      #here I used the 2-second sleep, do you feel it, when running the program?)))
+        print("\n ******************************\n Choose which program to run: \n1) Reverse the Number \n2) First Unique Character \n3) Zeros to the end \n4) Type \"exit\", to stop the program")
+        ans = input("\n")          # Here the user chooses one of those 3 choices
+        if ans == "1":              #if the user chooses first option, the first function is called
+            reverse_the_string()
+        elif ans == "2":              #if the user chooses second option, the second function is called
+            unique_character()
+        elif ans == "3":              #if the user chooses third option, the third function is called
+            zeros_to_end()
+        elif ans.lower()=="exit":      #if the user inputs exit of EXIT etc. the program will break
+		print("\n*****************\nThanks for using Azamat.code.com!!!")
+            break
+        else:                           #other inputs are invalid
+            print("\n\nInvalid input, run the program again")
+
+    #####################################################################
+    # 1111111111111111111111111111111111111111111111111111111111111111111#
+    #####################################################################
+
+    """
+  problem 1.
+
+  Write a function that Reverses given string of integer 
+
+  ex:
+
+  input : "123" output : 321,
+
+   input : "1230", output: 3210
+  """
+
+
+def reverse_the_string():  # I created a function called reverse_the_string
+    # firstly, we ask user to input a number
+    print("\n\n\n Problem 1\n")
+    num = input("Enter a number: \n")  # the number is string now
+    number_of_zeros_at_the_end = 0  # this is to know how many zeros are there at the end of the number
+    a = 1   #this is just an index in the number string
+    while num[-a] == "0":         #I created a while loop to count the number of zeros at the end of the number
+        number_of_zeros_at_the_end += 1       #if there is a zero at the end, the count will be increased
+        a += 1                    #then the index is increased as well
+    if num[0]=="0":    #normal number does not start with zero, that is why it will say "Invalid input!!!"
+        print("Invalid input!!!")
+    elif num[-1] != "0":  # I created if statement to check if the number ends with zero. If it does not end with zero, I will just reverse the string
+        new_num = int(num[::-1])  # I used string comprehension to revert the string
+        print(new_num)  # then just printed
+    elif num[-1] == "0":  # if the number ends with zero, I need to reverse the string and add zero to the end
+        new_num = int(num[::-1] + "0"*number_of_zeros_at_the_end)  # I reversed the string, then concatenated zero
+        print(new_num)  # then printed
+    else:         #other inputs are invalid
+        print("Invalid input!!!")
+
+    #####################################################################
+    # 2222222222222222222222222222222222222222222222222222222222222222222#
+    #####################################################################
+    """
+  problem 2.
+
+  write a function that finds first unique charachter
+
+  input : "barbados" output:  r
+
+  input : "alibaba" output:  l
+
+  """
+
+
+def unique_character():
+    print("\n\n\n Problem 2\n")
+    word = input("Enter a word: \n")  # firstly, I ask to enter a word
+    dictionary = dict()  # i create a dictionary to get the occurence of each letter, the key is going to be the letter, and the value is going to be the count of the letter
+    for char in word:  # create a for loop to add count of each character to the dictionary
+        if char in dictionary.keys():  # then, i check, if the character is already in the dictionary, I increase its count by one
+            dictionary[char] += 1
+        elif char not in dictionary.keys():  # if, the character is not in the dictionary, I add the character to the dictionary, and make its count as 1
+            dictionary[char] = 1
+
+    for k, v in dictionary.items():                 #now I get the keys in the dictionary as k, and values as v
+        if v == 1:                 # if the occurence of the key(letter) is only once, it will be printed (only the first unique character is printed)
+            print("\nThe first unique character: ")
+            print(k)
+            break                 #I need to break the loop after finding the first unique character
+
+    #####################################################################
+    # 3333333333333333333333333333333333333333333333333333333333333333333#
+    #####################################################################
+    """
+  problem 3.
+
+  write a function that takes list and moves all zeros to the back
+
+
+  input: [1,7,0,0,8,0,10,12,0,4] outpu:  [1, 7, 8, 10, 12, 4, 0, 0, 0, 0]
+
+  input : [0,0,0,1,2,3,0,5] output : [1,2,3,5,0,0,0,0]
+  """
+
+
+def zeros_to_end():  #like previous questions, I create a function
+    print("\n\n\n Problem 3\n")
+    list_of_numbers_as_string = input("Enter any numbers, separated by a space, add ZEROS, too\nExample: 1 7 0 0 8 0 10 12 0 4\n").split()     #Here I ask user to input some numbers (they are strings now)
+    list_of_numbers = []    #then I create a new empty list, then I will append the inputted numbers as integers ( because previously, these numbers were string datatype)
+    for num in list_of_numbers_as_string:    #for loop is in order to get each string number and append to a new list as an integer
+        list_of_numbers.append(int(num))
+    print("Initial list of numbers : {}.\n\n".format(list_of_numbers))     # this will print initial list of numbers, zeros are not moved to the end yet.
+
+    new_list_of_numbers = list()      #this is one more new list for saving the integer numbers, but now with zeros at the end of the list
+    count_of_zeros = 0     #I use this to know how many zeros are there in the list, and finally, add required number of zeros to the end of the final list
+
+    for i in list_of_numbers:    #i created a for loop to append only non-zero number to the new list, all the zeros will be added at the end of the list
+        if i != 0:  #if the number ( i ) in the list_of_numbers is non-zero, it is added to the new list
+            new_list_of_numbers.append(i)
+        elif i == 0:     #if the number in the list_of_numbers is zero, i will just increase the count of zeros
+            count_of_zeros += 1
+
+    for j in range(count_of_zeros):    #finally, after having a list of number without zeros, now, it is turn to put all zeros to the end of the final list
+        new_list_of_numbers.append(0)
+    print("Final list of numbers : {}.".format(new_list_of_numbers))    # this will print the final list of numbers
+
+
+main()   #now I call the main function, to start the code

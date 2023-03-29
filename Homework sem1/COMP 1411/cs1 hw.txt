@@ -1,0 +1,115 @@
+def main():  
+  print("Hello, \n My Name is Azamat Salamatov! \n Welcome To my Program")
+  print("\n Chose which program to run: \n1 \n2 \n3")
+  ans=int(input("\n"))
+  if ans ==1:
+    reverse_the_string()
+  elif ans==2:
+    unique_character()
+  elif ans==3:
+    zeros_to_end()
+
+  
+  #####################################################################
+  #1111111111111111111111111111111111111111111111111111111111111111111#
+  #####################################################################
+  
+  """
+  problem 1.
+  
+  Write a function that Reverses given string of integer 
+  
+  ex:
+  
+  input : "123" output : 321,
+  
+   input : "1230", output: 3210
+  """
+def reverse_the_string():
+  #firstly, we ask user to input a number
+  print("\n\n\n Problem 1\n")
+  num=input("Enter a number: \n")
+  if num[-1]!="0":    # I created if statement to check if the number ends with zero. If it does not end with zero, I will just reverse the string
+    new_num=int(num[::-1])   # I used string comprehension to revert the string
+    print(new_num)    #then just printed
+  elif num[-1]=="0":     #if the number ends with zero, I need to reverse the string and add zero to the end
+    new_num=int(num[::-1]+"0")   # I reversed the string, then concatenated zero
+    print(new_num)   #then printed
+  else:
+    print("Invalid input!!!")
+  
+  #####################################################################
+  #2222222222222222222222222222222222222222222222222222222222222222222#
+  #####################################################################
+  """
+  problem 2.
+  
+  write a function that finds first unique charachter
+  
+  input : "barbados" output:  r
+  
+  input : "alibaba" output:  l
+  
+  """
+def unique_character():
+  print("\n\n\n Problem 2\n")
+  word = input("Enter a word: \n")     #firstly, I ask to enter a word
+  # I have two solutions, first is if uppercase and lowercase letters are recognized as different characters, and the second - if both are the same character
+  dictionary=dict() # i create a dictionary
+  for char in word: # create a for loop to add count of each character to the dictionary
+    if char in dictionary.keys(): # then, i check, if the character is already in the dictionary, I increase its count by one
+      dictionary[char]+=1
+    elif char not in dictionary.keys(): # if, the character is not in the dictionary, I add the character to the dictionary, and make its count as 1
+      dictionary[char]=1
+  
+  for k,v in dictionary.items():
+    if v==1:
+      print("\nIf case-sensitive: ")
+      print(k)
+      break
+  # here is the second solution
+  dictionary=dict()    # I renew to dictionary
+  for char in word.lower():     #make all the characters lowercase
+    if char in dictionary.keys():  # then, i check, if the character is already in the dictionary, I increase its count by one
+      dictionary[char]+=1
+    elif char not in dictionary.keys():   # if, the character is not in the dictionary, I add the character to the dictionary, and make its count as 1
+      dictionary[char]=1
+  
+  for k,v in dictionary.items():
+    if v==1:
+      print("\nIf NOT case-sensitive: ")
+      print(k)
+      break
+  
+  #####################################################################
+  #3333333333333333333333333333333333333333333333333333333333333333333#
+  #####################################################################
+  """
+  problem 3.
+  
+  write a function that takes list and moves all zeros to the back
+  
+  
+  input: [1,7,0,0,8,0,10,12,0,4] outpu:  [1, 7, 8, 10, 12, 4, 0, 0, 0, 0]
+  
+  input : [0,0,0,1,2,3,0,5] output : [1,2,3,5,0,0,0,0]
+  """
+def zeros_to_end():
+  print("\n\n\n Problem 3\n")
+  list_of_numbers=[1,7,0,0,8,0,10,12,0,4]
+  print("Initial list of numbers : {}.\n\n".format(list_of_numbers))
+  
+  new_list_of_numbers=list()
+  count_of_zeros = 0
+  
+  for i in list_of_numbers:
+    if i!=0:
+      new_list_of_numbers.append(i)
+    elif i==0:
+      count_of_zeros+=1
+  
+  for j in range(count_of_zeros):
+    new_list_of_numbers.append(0)
+  print("Final list of numbers : {}.".format(new_list_of_numbers))
+
+main()
